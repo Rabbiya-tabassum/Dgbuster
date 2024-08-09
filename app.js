@@ -11,6 +11,9 @@ async function startBruteforce() {
     isBruteforcing = true;
     stopButton.disabled = false;
     resultsDiv.innerHTML = `<p>Bruteforcing <strong>${url}</strong>...</p>`;
+    
+    // Ensure resultsDiv remains scrolled to bottom
+    resultsDiv.style.overflowY = "auto";
 
     for (const path of paths) {
         if (!isBruteforcing) break;
@@ -24,9 +27,13 @@ async function startBruteforce() {
             } else {
                 resultsDiv.innerHTML += `<p>Failed to access ${url}/${path} - Status Code: ${statusCode}</p>`;
             }
+
         } catch (error) {
             resultsDiv.innerHTML += `<p>Error accessing ${url}/${path} - Possibly blocked by CORS</p>`;
         }
+
+        // Auto scroll to keep the latest results in view
+        resultsDiv.scrollTop = resultsDiv.scrollHeight;
     }
 
     if (isBruteforcing) {
