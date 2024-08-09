@@ -7,6 +7,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    overflow: hidden; /* Prevent body scrolling */
 }
 
 .container {
@@ -15,6 +16,8 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-height: 90vh;
+    overflow-y: auto; /* Allow results to scroll inside container */
 }
 
 input[type="text"] {
@@ -41,4 +44,12 @@ button:hover {
 #results {
     margin-top: 20px;
     text-align: left;
+    max-height: 50vh; /* Limit height of results */
+    overflow-y: auto; /* Make results scrollable */
 }
+
+#stopButton {
+    position: sticky;
+    bottom: 10px;
+}
+
